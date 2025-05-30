@@ -15,7 +15,6 @@ coverage
 !src/**
 
 ./tsconfig.tsbuildinfo
-package-lock.json
 medusa-db.sql
 build
 .cache
