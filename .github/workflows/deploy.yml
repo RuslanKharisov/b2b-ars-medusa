@@ -48,11 +48,11 @@ jobs:
       - name: Copy .env files from secrets/
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
-            cd /home/ubuntu/b2b-ars-medusa
+            cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
 
             # Копируем секреты из папки secrets/ (переданных через rsync)
-            cp secrets/env.backend ars-backend/.env.production
-            cp secrets/env.storefront ars-storefront/.env.production
+            cp /home/${{ secrets.SERVER_USER }}/secrets/env.backend ars-backend/.env.production
+            cp /home/${{ secrets.SERVER_USER }}/secrets/env.storefront ars-storefront/.env.production
 
             echo "✅ .env.production files copied"
           EOF
