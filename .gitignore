@@ -1,0 +1,45 @@
+# ========== Node.js & Package Managers ==========
+
+**/node_modules/
+
+# npm logs
+npm-debug.log*
+
+# Yarn 2+/4 (только в ars-storefront)
+ars-storefront/.pnp.*
+ars-storefront/.yarn/*
+!ars-storefront/.yarn/patches
+!ars-storefront/.yarn/plugins
+!ars-storefront/.yarn/releases
+!ars-storefront/.yarn/sdks
+!ars-storefront/.yarn/versions
+ars-storefront/yarn.lock
+
+# ========== Build Artifacts ==========
+**/build/
+**/dist/
+**/.next/
+**/out/
+**/.turbo/
+
+# ========== Environment Files ==========
+**/.env
+**/.env.production
+**/.env.local
+**/.env.*.local
+
+# ========== Coverage & Testing ==========
+coverage/
+
+# ========== System & IDE ==========
+.DS_Store
+**/.DS_Store
+*.pem
+*.log
+
+# ========== Vercel ==========
+.vercel/
+
+# ========== Docker (опционально, если у тебя что-то локально специфичное) ==========
+docker-compose.override.yml
+.docker/

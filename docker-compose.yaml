@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15.3-alpine
+    container_name: b2b_store_ars
+    restart: unless-stopped    
+    ports:
+      - "5432:5432"
+    env_file: ./ars-backend/.env  
+    # env_file: ./ars-backend/.env.production  
+    volumes:
+      - app-db-data:/var/lib/postgresql/data:cached
+    networks:
+      - medusa-network  
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis_b2b
+    ports:
+      - "6379:6379"    
+    restart: unless-stopped
+    networks:
+      - medusa-network
+
+  medusa:
+    container_name: medusa-backend
+    build:
+      context: ./ars-backend
+      dockerfile: Dockerfile.admin
+    depends_on:
+      - postgres
+      - redis
+    env_file: ./ars-backend/.env.production   
+    ports:
+      - "9000:9000"
+    networks:
+      - medusa-network  
+
+  worker:
+    container_name: medusa-worker
+    build:
+      context: ./ars-backend
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - redis
+    env_file: ./ars-backend/.env.production
+    ports:
+      - "9001:9001"
+    networks:
+      - medusa-network  
+
+  storefront:
+    build:
+      context: ./ars-storefront
+      dockerfile: Dockerfile
+    depends_on:
+      - worker
+    env_file: ./ars-storefront/.env.production  
+    ports:
+      - "8000:8000"
+    networks:
+      - medusa-network  
+
+volumes:
+  app-db-data:
+
+networks:
+  medusa-network:
+    driver: bridge  
+    

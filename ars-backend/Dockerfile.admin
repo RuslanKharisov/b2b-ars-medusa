@@ -1,0 +1,66 @@
+# ---------- Admin Mode ----------
+# ---------- DEPENDENCIES STAGE ----------
+FROM node:22-alpine as deps
+WORKDIR /app
+
+# Устанавливаем зависимости (только runtime)
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+# ---------- BUILDER STAGE ----------
+FROM node:22-alpine as builder
+WORKDIR /app
+
+# Установка переменных окружения
+ENV NODE_ENV=production
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+# Устанавливаем утилиты
+RUN apk add --no-cache python3
+
+# Устанавливаем medusa-cli глобально
+RUN npm install -g @medusajs/medusa-cli@latest
+
+# Копируем зависимости из предыдущего слоя
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/package.json ./package.json
+
+# Копируем исходный код
+COPY . .
+
+# Сборка проекта
+RUN npm run build
+
+# Копируем .env внутрь .medusa/server
+COPY .env.production .medusa/server/.env
+
+# ---------- RUNNER STAGE ----------
+FROM node:22-alpine as runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+# Установка утилит
+RUN apk add --no-cache python3
+
+# Копируем только билд и зависимости
+COPY --from=builder /app/.medusa/server ./.medusa/server
+COPY --from=builder /app/package-lock.json ./package-lock.json
+COPY --from=builder /app/.medusa/server/.env ./.medusa/server/.env
+
+WORKDIR /app/.medusa/server
+
+EXPOSE 9000
+
+# Стартуем Medusa сервер
+CMD ["sh", "-c", "\
+    if [ ! -f .env ]; then \
+    echo '❌ ERROR: .env not found in .medusa/server! Aborting.'; \
+    exit 1; \
+    fi && \
+    echo '✅ .env found, continuing...' && \
+    npm install --omit=dev && \
+    npm run predeploy && \
+    npm run start"]
+
