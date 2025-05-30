@@ -51,8 +51,8 @@ jobs:
             cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
 
             # Копируем секреты из папки secrets/ (переданных через rsync)
-            cp /home/${{ secrets.SERVER_USER }}/secrets/env.backend ars-backend/.env.production
-            cp /home/${{ secrets.SERVER_USER }}/secrets/env.storefront ars-storefront/.env.production
+            cp /home/${{ secrets.SERVER_USER }}/secrets/env-backend ars-backend/.env.production
+            cp /home/${{ secrets.SERVER_USER }}/secrets/env-storefront ars-storefront/.env.production
 
             echo "✅ .env.production files copied"
           EOF
