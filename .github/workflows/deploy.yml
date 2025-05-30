@@ -45,24 +45,33 @@ jobs:
             -e "ssh -o StrictHostKeyChecking=no" \
             ./ ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}}:/home/${{secrets.SERVER_USER}}/b2b-ars-medusa
 
-      - name: SSH into VPS and rebuild only changed containers
+      - name: Copy .env files from secrets/
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
+            cd /home/ubuntu/b2b-ars-medusa
+
+            # Копируем секреты из папки secrets/ (переданных через rsync)
+            cp secrets/env.backend ars-backend/.env.production
+            cp secrets/env.storefront ars-storefront/.env.production
+
+            echo "✅ .env.production files copied"
+          EOF
+
+      - name: Rebuild only changed containers and restart
         run: |
           ssh -o StrictHostKeyChecking=no ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}} << 'EOF'
           cd /home/${{secrets.SERVER_USER}}/b2b-ars-medusa
 
-          # Optional: Pull latest .env or secrets
-          # git pull origin main
-
           if [[ "${{ needs.detect-changes.outputs.backend_changed }}" == "true" ]]; then
-            echo "Backend changed: rebuilding backend and worker containers..."
+            echo "🔄 Backend changed: rebuilding backend and worker containers..."
             docker compose build medusa worker
           fi
 
           if [[ "${{ needs.detect-changes.outputs.frontend_changed }}" == "true" ]]; then
-            echo "Frontend changed: rebuilding storefront container..."
+            echo "🔄 Frontend changed: rebuilding storefront container..."
             docker compose build storefront
           fi
 
-          echo "Starting containers..."
+          echo "🚀 Starting containers..."
           docker compose up -d
           EOF
