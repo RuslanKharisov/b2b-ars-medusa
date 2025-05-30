@@ -43,11 +43,11 @@ jobs:
         run: |
           rsync -az --delete \
             -e "ssh -o StrictHostKeyChecking=no" \
-            ./ user@your-vps-ip:/home/user/medusa-b2b
+            ./ ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}}:/home/user/medusa-b2b
 
       - name: SSH into VPS and rebuild only changed containers
         run: |
-          ssh -o StrictHostKeyChecking=no user@your-vps-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}} << 'EOF'
           cd /home/user/medusa-b2b
 
           # Optional: Pull latest .env or secrets
