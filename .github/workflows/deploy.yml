@@ -49,7 +49,7 @@ jobs:
 
       - name: Rsync project to VPS
         run: |
-          rsync -az --delete \
+          rsync -az \
             -e "ssh -o StrictHostKeyChecking=no" \
             ./ ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}}:/home/${{secrets.SERVER_USER}}/b2b-ars-medusa
 

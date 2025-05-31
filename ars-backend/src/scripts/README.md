@@ -27,7 +27,7 @@ The function receives as a parameter an object having a `container` property, wh
 
 ---
 
-## How to Run Custom CLI Script?
+## How to Run Custom CLI \*\* Script?
 
 To run the custom CLI script, run the `exec` command:
 
