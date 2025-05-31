@@ -3,7 +3,7 @@ import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
 import { createApprovalSettingsWorkflow } from "../workflows/approval/workflows";
 
 /**
- * This script adds approval settings to companies that don't have them yet.
+ * This script adds approval settings to companies that don't have them yet!
  * It's meant to be run once when you're upgrading the Starter for an existing project.
  * If you're doing a fresh install, you can ignore this script.
  *
