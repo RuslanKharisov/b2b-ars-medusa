@@ -9,8 +9,8 @@ jobs:
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      backend_changed: ${{ steps.changes.outputs.backend }}
-      frontend_changed: ${{ steps.changes.outputs.frontend }}
+      backend_changed: ${{ steps.backend.outputs.changed }}
+      frontend_changed: ${{ steps.frontend.outputs.changed }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
