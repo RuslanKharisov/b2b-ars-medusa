@@ -88,7 +88,7 @@ jobs:
             echo "🚀 Перезапускаем Medusa admin и worker через PM2"
 
             pm2 restart medusa-admin --update-env
-            pm2 restart mmedusa-worker --update-env
+            pm2 restart medusa-worker --update-env
 
             # ToDo: реализовать проверку, если сервиса нет, создать!!!
             # pm2 start npm --name medusa-admin -- run start:admin
