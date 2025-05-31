@@ -63,7 +63,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
           # Активируем нужную версию Node.js
-          nvm use 22.13.1 || nvm install 22.13.1
+          nvm use 22.13.1 
 
           cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
 
@@ -79,10 +79,10 @@ jobs:
             npm run build
 
             # Копируем .env и package.json  в .medusa/server
-            cp .env ../.medusa/server/.env
+            cp .env .medusa/server/.env
             cp package.json ../.medusa/server/package.json
 
-            cd ../.medusa/server
+            cd .medusa/server
             npm install
 
             echo "🚀 Перезапускаем Medusa admin и worker через PM2"
