@@ -80,7 +80,7 @@ jobs:
 
             # Копируем .env и package.json  в .medusa/server
             cp .env .medusa/server/.env
-            cp package.json ../.medusa/server/package.json
+            # cp package.json ../.medusa/server/package.json
 
             cd .medusa/server
             npm install
