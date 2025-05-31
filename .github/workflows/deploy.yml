@@ -66,7 +66,7 @@ jobs:
           if [[ "${{ needs.detect-changes.outputs.backend_changed }}" == "true" ]]; then
             echo "🔧 Backend изменён. Билдим и запускаем Medusa..."
 
-            cd ars-backend
+            cd ars-backend/
             npm install
             npm run build
 
