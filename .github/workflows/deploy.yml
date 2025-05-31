@@ -104,6 +104,8 @@ jobs:
             yarn install
             yarn build
 
+            cd .medusa/server
+
             if pm2 list | grep -q storefront; then
               echo "♻️ PM2: storefront уже запущен — перезапуск..."
               pm2 restart storefront --update-env

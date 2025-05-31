@@ -1,4 +1,4 @@
-## Setup Storefront
+## Setup Storefront !
 
 # Clone .env.template
 
