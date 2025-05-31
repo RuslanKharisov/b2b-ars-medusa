@@ -13,7 +13,6 @@ ars-storefront/.yarn/*
 !ars-storefront/.yarn/releases
 !ars-storefront/.yarn/sdks
 !ars-storefront/.yarn/versions
-ars-storefront/yarn.lock
 
 # ========== Build Artifacts ==========
 **/build/

@@ -1,0 +1,77 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      backend_changed: ${{ steps.changes.outputs.backend }}
+      frontend_changed: ${{ steps.changes.outputs.frontend }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect changes in folders
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            backend:
+              - 'ars-backend/**'
+            frontend:
+              - 'ars-storefront/**'
+              - 'Dockerfile'
+              - 'docker-compose.yml'
+
+  deploy:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH access
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Rsync project to VPS
+        run: |
+          rsync -az --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}}:/home/${{secrets.SERVER_USER}}/b2b-ars-medusa
+
+      - name: Copy .env files from secrets/
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
+            cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
+
+            # Копируем секреты из папки secrets/ (переданных через rsync)
+            cp /home/${{ secrets.SERVER_USER }}/secrets/env-backend ars-backend/.env.production
+            cp /home/${{ secrets.SERVER_USER }}/secrets/env-storefront ars-storefront/.env.production
+
+            echo "✅ .env.production files copied"
+          EOF
+
+      - name: Rebuild only changed containers and restart
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}} << 'EOF'
+          cd /home/${{secrets.SERVER_USER}}/b2b-ars-medusa
+
+          if [[ "${{ needs.detect-changes.outputs.backend_changed }}" == "true" ]]; then
+            echo "🔄 Backend changed: rebuilding backend and worker containers..."
+            docker compose build medusa worker
+          fi
+
+          if [[ "${{ needs.detect-changes.outputs.frontend_changed }}" == "true" ]]; then
+            echo "🔄 Frontend changed: rebuilding storefront container..."
+            docker compose build storefront
+          fi
+
+          echo "🚀 Starting containers..."
+          docker compose up -d
+          EOF

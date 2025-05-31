@@ -14,18 +14,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Detect changes in folders
-        id: changes
-        uses: dorny/paths-filter@v3
         with:
-          filters: |
-            backend:
-              - 'ars-backend/**'
-            frontend:
-              - 'ars-storefront/**'
-              - 'Dockerfile'
-              - 'docker-compose.yml'
+          fetch-depth: 2
+
+      - name: Detect backend changes
+        id: backend
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep "^ars-backend/"; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Detect frontend changes
+        id: frontend
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep "^ars-storefront/"; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
 
   deploy:
     needs: detect-changes
@@ -45,33 +53,56 @@ jobs:
             -e "ssh -o StrictHostKeyChecking=no" \
             ./ ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}}:/home/${{secrets.SERVER_USER}}/b2b-ars-medusa
 
-      - name: Copy .env files from secrets/
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
-            cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
-
-            # Копируем секреты из папки secrets/ (переданных через rsync)
-            cp /home/${{ secrets.SERVER_USER }}/secrets/env-backend ars-backend/.env.production
-            cp /home/${{ secrets.SERVER_USER }}/secrets/env-storefront ars-storefront/.env.production
-
-            echo "✅ .env.production files copied"
-          EOF
-
-      - name: Rebuild only changed containers and restart
+      - name: Deploy & start backend/frontend via PM2
         run: |
           ssh -o StrictHostKeyChecking=no ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}} << 'EOF'
-          cd /home/${{secrets.SERVER_USER}}/b2b-ars-medusa
+          set -e
+          cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
+
+          echo "📦 Копируем .env файлы..."
+          cp /home/${{ secrets.SERVER_USER }}/secrets/env-backend ars-backend/.env
+          cp /home/${{ secrets.SERVER_USER }}/secrets/env-storefront ars-storefront/.env
 
           if [[ "${{ needs.detect-changes.outputs.backend_changed }}" == "true" ]]; then
-            echo "🔄 Backend changed: rebuilding backend and worker containers..."
-            docker compose build medusa worker
+            echo "🔧 Backend изменён. Билдим и запускаем Medusa..."
+
+            cd ars-backend
+            npm install
+            npm run build
+
+            # Копируем .env и package.json  в .medusa/server
+            cp .env ../.medusa/server/.env
+
+            cd ../.medusa/server
+            npm install
+
+            echo "🚀 Перезапускаем Medusa admin и worker через PM2"
+
+            pm2 restart medusa-admin --update-env
+            pm2 restart mmedusa-worker --update-env
+
+            # ToDo: реализовать проверку, если сервиса нет, создать!!!
+            # pm2 start npm --name medusa-admin -- run start:admin
+            # pm2 start npm --name medusa-worker -- run start:worker
+          else
+            echo "✅ Backend не изменился — пропускаем пересборку"
           fi
 
           if [[ "${{ needs.detect-changes.outputs.frontend_changed }}" == "true" ]]; then
-            echo "🔄 Frontend changed: rebuilding storefront container..."
-            docker compose build storefront
-          fi
+            echo "🌐 Frontend изменён. Перезапускаем Storefront..."
 
-          echo "🚀 Starting containers..."
-          docker compose up -d
-          EOF
+            cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa/ars-storefront
+            yarn install
+            yarn build
+
+            if pm2 list | grep -q storefront; then
+              echo "♻️ PM2: storefront уже запущен — перезапуск..."
+              pm2 restart storefront --update-env
+            else
+              echo "🚀 PM2: storefront не найден — первый запуск..."
+              pm2 start yarn --name storefront -- start
+            fi
+          else
+            echo "✅ Frontend не изменился — пропускаем перезапуск"
+          fiho "✅ Деплой завершён"
+                    EOF
