@@ -20,7 +20,7 @@ jobs:
       - name: Detect backend changes
         id: backend
         run: |
-          if git diff --name-only HEAD^ HEAD | grep "^ars-backend/"; then
+          if git diff --name-only HEAD^ HEAD | grep -i "^ars-backend/"; then
             echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
