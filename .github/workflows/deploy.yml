@@ -57,6 +57,14 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{secrets.SERVER_USER}}@${{secrets.REMOTE_HOST}} << 'EOF'
           set -e
+
+          # Загружаем NVM
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
+          # Активируем нужную версию Node.js
+          nvm use 22.13.1 || nvm install 22.13.1
+
           cd /home/${{ secrets.SERVER_USER }}/b2b-ars-medusa
 
           echo "📦 Копируем .env файлы..."
