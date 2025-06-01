@@ -38,7 +38,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
     ModuleRegistrationName.STORE
   );
 
-  const countries = ["gb", "de", "dk", "se", "fr", "es", "it"];
+  const countries = ["gb", "de", "dk", "se", "fr", "es", "it", "ru"];
 
   logger.info("Seeding store data...");
   const [store] = await storeModuleService.listStores();
@@ -178,6 +178,10 @@ export default async function seedDemoData({ container }: ExecArgs) {
           },
           {
             country_code: "it",
+            type: "country",
+          },
+          {
+            country_code: "ru",
             type: "country",
           },
         ],

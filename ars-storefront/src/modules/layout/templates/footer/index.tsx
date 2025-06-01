@@ -15,6 +15,8 @@ export default async function Footer() {
     limit: 6,
   })
 
+  console.log("product_categories ==> ", product_categories)
+
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
