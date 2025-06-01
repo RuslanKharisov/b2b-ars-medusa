@@ -7,40 +7,30 @@ import Image from "next/image"
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-neutral-100">
-      <Image
-        src="/hero-image.jpg"
-        alt="Hero background"
-        layout="fill"
-        quality={100}
-        priority
-      />
-      <div className="absolute inset-0 z-1 flex flex-col justify-center items-center text-center small:p-32 gap-6">
-        <span>
-          <p className="text-neutral-600 text-xs uppercase">
-            Be light on your feet
+    <div className="h-[65vh] w-full border-b border-ui-border-base bg-ui-bg-subtle">
+      <div className="content-container h-full px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 flex-col flex lg:flex-row overflow-hidden">
+        <div className="mr-auto place-self-center">
+          <h1 className="max-w-2xl mb-4">Компьютер на модуле (SoM)</h1>
+          <p className="max-w-2xl mb-6 lg:mb-8">
+            Компьютеры на модулях (CoM) / Системы на модулях (SoM) предлагают
+            надежную и экономически эффективную встроенную платформу для
+            создания конечных продуктов. ARS Electronic предлагает широкий
+            спектр CoM, использующих ведущие системы на чипах (SoC) на базе Arm
           </p>
 
-          <Heading
-            level="h1"
-            className="text-6xl leading-10 text-ui-fg-base font-normal mt-10 mb-5"
-          >
-            Bestsellers !
-          </Heading>
-
-          <p className="leading-10 text-ui-fg-subtle font-normal text-lg">
-            See our widest selection of electronics
-          </p>
-        </span>
-        <a
-          href="https://github.com/medusajs/b2b-starter-medusa"
-          target="_blank"
-        >
-          <Button variant="secondary" className="rounded-2xl">
-            <Github />
-            Github Repository
+          <Button variant="secondary" size="xlarge" className="">
+            Подобрать SoM модуль
           </Button>
-        </a>
+        </div>
+        <div className="hidden lg:mt-0 lg:flex  ">
+          <Image
+            src="/images/home/hero/Q7-Skif-hero.webp"
+            width={700}
+            height={700}
+            alt="SoM module Q7"
+            className="object-cover"
+          />
+        </div>
       </div>
     </div>
   )
