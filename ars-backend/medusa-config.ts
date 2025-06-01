@@ -24,7 +24,7 @@ module.exports = defineConfig({
     { resolve: "./src/modules/quote" },
     { resolve: "./src/modules/approval" },
     // { resolve: "@medusajs/medusa/cache-inmemory" },
-    { resolve: "@medusajs/medusa/workflow-engine-inmemory" },
+    // { resolve: "@medusajs/medusa/workflow-engine-inmemory" },
     {
       resolve: "@medusajs/medusa/cache-redis",
       options: { redisUrl: process.env.REDIS_URL },

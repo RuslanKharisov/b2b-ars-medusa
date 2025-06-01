@@ -42,3 +42,6 @@ coverage/
 # ========== Docker (опционально, если у тебя что-то локально специфичное) ==========
 docker-compose.override.yml
 .docker/
+
+# ========== Конфиги ==========
+medusa-config.ts
