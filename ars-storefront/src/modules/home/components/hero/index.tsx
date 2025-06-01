@@ -25,7 +25,7 @@ const Hero = () => {
             level="h1"
             className="text-6xl leading-10 text-ui-fg-base font-normal mt-10 mb-5"
           >
-            Bestsellers
+            Bestsellers !
           </Heading>
 
           <p className="leading-10 text-ui-fg-subtle font-normal text-lg">
