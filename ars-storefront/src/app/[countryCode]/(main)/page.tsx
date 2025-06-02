@@ -1,6 +1,8 @@
 import { listRegions } from "@/lib/data/regions"
+import Brief from "@/modules/home/components/brief"
 import FeaturedProducts from "@/modules/home/components/featured-products"
 import Hero from "@/modules/home/components/hero"
+import { SocFamilies } from "@/modules/home/components/soc-families"
 import SkeletonFeaturedProducts from "@/modules/skeletons/templates/skeleton-featured-products"
 import { Metadata } from "next"
 import { Suspense } from "react"
@@ -33,8 +35,10 @@ export default async function Home(props: {
 
   return (
     <div className="flex flex-col gap-y-2 m-2">
-      <Hero />
       <Suspense fallback={<SkeletonFeaturedProducts />}>
+        <Hero />
+        <Brief />
+        <SocFamilies />
         <FeaturedProducts countryCode={countryCode} />
       </Suspense>
     </div>
