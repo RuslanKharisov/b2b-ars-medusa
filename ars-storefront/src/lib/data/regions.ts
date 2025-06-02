@@ -13,7 +13,7 @@ export const listRegions = async (): Promise<HttpTypes.StoreRegion[]> => {
   return sdk.client
     .fetch<{ regions: HttpTypes.StoreRegion[] }>(`/store/regions`, {
       method: "GET",
-      next,
+      next: { revalidate: 60 },
       cache: "force-cache",
     })
     .then(({ regions }: { regions: HttpTypes.StoreRegion[] }) => regions)
@@ -30,7 +30,7 @@ export const retrieveRegion = async (
   return sdk.client
     .fetch<{ region: HttpTypes.StoreRegion }>(`/store/regions/${id}`, {
       method: "GET",
-      next,
+      next: { revalidate: 60 },
       cache: "force-cache",
     })
     .then(({ region }: { region: HttpTypes.StoreRegion }) => region)

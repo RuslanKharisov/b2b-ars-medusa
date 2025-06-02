@@ -52,7 +52,7 @@ export const listApprovals = async ({
       },
       method: "GET",
       headers,
-      next,
+      next: { revalidate: 60 },
       credentials: "include",
       cache: "force-cache",
     }
@@ -61,7 +61,7 @@ export const listApprovals = async ({
   return result
 }
 
-export const retrieveApproval = async (approvalId: string) => {}
+export const retrieveApproval = async (approvalId: string) => { }
 
 export const updateApproval = async (
   approvalId: string,

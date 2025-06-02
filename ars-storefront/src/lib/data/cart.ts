@@ -43,7 +43,7 @@ export async function retrieveCart(id?: string) {
           "*items, *region, *items.product, *items.variant, +items.thumbnail, +items.metadata, *promotions, *company, *company.approval_settings, *customer, *approvals, +completed_at, *approval_status",
       },
       headers,
-      next,
+      next: { revalidate: 60 },
       cache: "force-cache",
     })
     .then(({ cart }) => {
@@ -506,8 +506,7 @@ export async function placeOrder(
   await removeCartId()
 
   redirect(
-    `/${response.order.shipping_address?.country_code?.toLowerCase()}/order/confirmed/${
-      response.order.id
+    `/${response.order.shipping_address?.country_code?.toLowerCase()}/order/confirmed/${response.order.id
     }`
   )
 }

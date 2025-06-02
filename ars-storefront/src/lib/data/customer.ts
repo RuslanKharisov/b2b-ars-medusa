@@ -39,7 +39,7 @@ export const retrieveCustomer = async (): Promise<B2BCustomer | null> => {
         fields: "*employee, *orders",
       },
       headers,
-      next,
+      next: { revalidate: 60 },
       cache: "force-cache",
     })
     .then(({ customer }) => customer as B2BCustomer)
