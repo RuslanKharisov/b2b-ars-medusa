@@ -23,7 +23,9 @@ export const listCategories = async (
           limit,
           ...query,
         },
-        next,
+        next: {
+          revalidate: 60,
+        },
         cache: "force-cache",
       }
     )
@@ -47,7 +49,9 @@ export const getCategoryByHandle = async (
           fields: "*category_children, *products",
           handle,
         },
-        next,
+        next: {
+          revalidate: 60,
+        },
         cache: "force-cache",
       }
     )
