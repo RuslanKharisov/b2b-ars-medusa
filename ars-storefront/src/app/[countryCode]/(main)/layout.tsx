@@ -9,6 +9,7 @@ import FreeShippingPriceNudge from "@/modules/shipping/components/free-shipping-
 import { StoreFreeShippingPrice } from "@/types/shipping-option/http"
 import { ArrowUpRightMini, ExclamationCircleSolid } from "@medusajs/icons"
 import { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -30,17 +31,16 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
         <div className="flex flex-col small:flex-row small:gap-2 gap-1 items-center">
           <span className="flex items-center gap-1">
             <ExclamationCircleSolid className="inline" color="#A1A1AA" />
-            Build your own B2B store with this starter:
+            SoM Модули для ускорения выхода на рынок :
           </span>
 
-          <a
+          <Link
+            href="/store"
             className="group hover:text-ui-fg-interactive-hover text-ui-fg-interactive self-end small:self-auto"
-            href="https://git.new/b2b-starter-repo"
-            target="_blank"
           >
-            GitHub Repo
+            Выбрать модуль в каталоге
             <ArrowUpRightMini className="group-hover:text-ui-fg-interactive-hover inline text-ui-fg-interactive" />
-          </a>
+          </Link>
         </div>
       </div>
 
