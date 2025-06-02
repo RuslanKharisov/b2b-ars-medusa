@@ -1,6 +1,7 @@
 import { listCategories } from "@/lib/data/categories"
 import { listCollections } from "@/lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
+import Image from "next/image"
 
 import LocalizedClientLink from "@/modules/common/components/localized-client-link"
 import MedusaCTA from "@/modules/layout/components/medusa-cta"
@@ -24,9 +25,16 @@ export default async function Footer() {
           <div>
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase h-full py-2 w-1/2 md:w-full flex justify-center items-center"
+              data-testid="nav-store-link"
             >
-              Medusa Store
+              <Image
+                src="/images/home/ARS logo black_transparent.svg"
+                width={240}
+                height={60}
+                alt="ARS Electronic Logo"
+                className="h-full"
+              />
             </LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">

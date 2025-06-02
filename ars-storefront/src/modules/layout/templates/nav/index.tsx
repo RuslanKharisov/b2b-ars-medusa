@@ -12,6 +12,7 @@ import SkeletonAccountButton from "@/modules/skeletons/components/skeleton-accou
 import SkeletonCartButton from "@/modules/skeletons/components/skeleton-cart-button"
 import SkeletonMegaMenu from "@/modules/skeletons/components/skeleton-mega-menu"
 import { Suspense } from "react"
+import Image from "next/image"
 
 export async function NavigationHeader() {
   const customer = await retrieveCustomer().catch(() => null)
@@ -23,13 +24,17 @@ export async function NavigationHeader() {
         <div className="small:mx-auto flex justify-between items-center min-w-full">
           <div className="flex items-center small:space-x-4">
             <LocalizedClientLink
-              className="hover:text-ui-fg-base flex items-center w-fit"
               href="/"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase h-full py-2 w-1/2 md:w-full flex justify-center items-center"
+              data-testid="nav-store-link"
             >
-              <h1 className="small:text-base text-sm font-medium flex items-center">
-                <LogoIcon className="inline mr-2" />
-                Medusa B2B Starter
-              </h1>
+              <Image
+                src="/images/home/ARS logo black_transparent.svg"
+                width={240}
+                height={60}
+                alt="ARS Electronic Logo"
+                className="h-full"
+              />
             </LocalizedClientLink>
 
             <nav>
@@ -78,9 +83,9 @@ export async function NavigationHeader() {
               <AccountButton customer={customer} />
             </Suspense>
 
-            <Suspense fallback={<SkeletonCartButton />}>
+            {/* <Suspense fallback={<SkeletonCartButton />}>
               <CartButton />
-            </Suspense>
+            </Suspense> */}
           </div>
         </div>
       </header>
