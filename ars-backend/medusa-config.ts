@@ -27,10 +27,7 @@ module.exports = defineConfig({
     // { resolve: "@medusajs/medusa/workflow-engine-inmemory" },
     {
       resolve: "@medusajs/medusa/cache-redis",
-      options: {
-        redisUrl: process.env.REDIS_URL,
-        ttl: 10,
-      },
+      options: { redisUrl: process.env.REDIS_URL },
     },
     {
       resolve: "@medusajs/medusa/event-bus-redis",
