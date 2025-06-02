@@ -33,8 +33,8 @@ export const getProductsById = async ({
           "*variants,*variants.calculated_price,*variants.inventory_quantity",
       },
       headers,
-      next: { revalidate: 60 },
-      cache: "force-cache",
+
+      cache: "no-store",
     })
     .then(({ products }) => products)
 }
@@ -59,8 +59,8 @@ export const getProductByHandle = async (handle: string, regionId: string) => {
           "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
       },
       headers,
-      next: { revalidate: 60 },
-      cache: "force-cache",
+
+      cache: "no-store",
     })
     .then(({ products }) => products[0])
 }
@@ -112,8 +112,8 @@ export const listProducts = async ({
           ...queryParams,
         },
         headers,
-        next: { revalidate: 60 },
-        cache: "force-cache",
+
+        cache: "no-store",
       }
     )
     .then(({ products, count }) => {

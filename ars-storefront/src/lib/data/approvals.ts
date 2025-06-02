@@ -52,7 +52,7 @@ export const listApprovals = async ({
       },
       method: "GET",
       headers,
-      next: { revalidate: 60 },
+
       credentials: "include",
       cache: "force-cache",
     }

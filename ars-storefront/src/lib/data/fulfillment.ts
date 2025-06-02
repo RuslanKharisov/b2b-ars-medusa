@@ -21,7 +21,7 @@ export const listCartShippingMethods = async (cartId: string) => {
         method: "GET",
         query: { cart_id: cartId },
         headers,
-        next: { revalidate: 60 },
+
         cache: "force-cache",
       }
     )
@@ -49,7 +49,7 @@ export const listCartFreeShippingPrices = async (
       method: "GET",
       query: { cart_id: cartId },
       headers,
-      next: { revalidate: 60 },
+
       cache: "force-cache",
     })
     .then((data) => data.prices)

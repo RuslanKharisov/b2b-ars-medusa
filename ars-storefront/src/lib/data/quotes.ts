@@ -109,7 +109,7 @@ export const acceptQuote = async (id: string) => {
       method: "POST",
       body: {},
       headers,
-      next: { revalidate: 60 },
+
       cache: "force-cache",
     })
     .then((res) => {
@@ -139,7 +139,7 @@ export const rejectQuote = async (id: string) => {
       method: "POST",
       body: {},
       headers,
-      next: { revalidate: 60 },
+
       cache: "force-cache",
     })
     .finally(async () => {
@@ -165,7 +165,7 @@ export const createQuoteMessage = async (
       method: "POST",
       body,
       headers,
-      next: { revalidate: 60 },
+
       cache: "force-cache",
     })
     .then((res) => {
