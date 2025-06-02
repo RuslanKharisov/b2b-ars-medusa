@@ -54,6 +54,7 @@
 &nbsp;
 
 ## Overview
+
 For a full feature overview, please visit [the project wiki](https://github.com/medusajs/b2b-starter-medusa/wiki).
 
 #### Core features
@@ -205,3 +206,10 @@ To reflect any changes made to data models, make sure to run `npx medusa db:migr
 <a href = "https://github.com/medusajs/b2b-starter-medusa/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=medusajs/b2b-starter-medusa"/>
 </a>
+
+## cleanup VPS
+
+```
+./cleanup.sh
+
+```
