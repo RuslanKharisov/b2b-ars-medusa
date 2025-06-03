@@ -40,9 +40,7 @@ export default async function Footer() {
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
             {product_categories && product_categories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
+                <span className="txt-small-plus txt-ui-fg-base">Категории</span>
                 <ul
                   className="grid grid-cols-1 gap-2"
                   data-testid="footer-categories"
@@ -98,9 +96,7 @@ export default async function Footer() {
             )}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
+                <span className="txt-small-plus txt-ui-fg-base">Коллекции</span>
                 <ul
                   className={clx(
                     "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
@@ -123,37 +119,23 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
+              <span className="txt-small-plus txt-ui-fg-base">О нас</span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
-                  <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                  <LocalizedClientLink
+                    href={`/`}
+                    className={clx("hover:text-ui-fg-base")}
                   >
-                    GitHub
-                  </a>
+                    О компании
+                  </LocalizedClientLink>
                 </li>
                 <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                  <LocalizedClientLink
+                    href={`/`}
+                    className={clx("hover:text-ui-fg-base")}
                   >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/medusajs/b2b-starter-medusa"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Source code
-                  </a>
+                    Политика конфиденциальности
+                  </LocalizedClientLink>
                 </li>
               </ul>
             </div>
@@ -161,7 +143,8 @@ export default async function Footer() {
         </div>
         <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            © {new Date().getFullYear()} ARS Electronic. Россия, Республика
+            Татарстан, г. Казань, Сибгата Хакима 5А . +79178696482.
           </Text>
           <MedusaCTA />
         </div>
