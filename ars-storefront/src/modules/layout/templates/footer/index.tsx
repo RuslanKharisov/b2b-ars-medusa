@@ -16,13 +16,11 @@ export default async function Footer() {
     limit: 6,
   })
 
-  console.log("product_categories ==> ", product_categories)
-
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+          <div className="w-full sm:w-auto">
             <LocalizedClientLink
               href="/"
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase h-full py-2 w-1/2 md:w-full flex justify-center items-center"
@@ -37,17 +35,17 @@ export default async function Footer() {
               />
             </LocalizedClientLink>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
+
+          {/* Основной контейнер для 4 колонок */}
+          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-4">
+            {/* Категории */}
             {product_categories && product_categories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">Категории</span>
-                <ul
-                  className="grid grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
+                <ul className="grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small">
                   {product_categories?.slice(0, 6).map((c) => {
                     if (c.parent_category) {
-                      return
+                      return null
                     }
 
                     const children =
@@ -64,7 +62,7 @@ export default async function Footer() {
                       >
                         <LocalizedClientLink
                           className={clx(
-                            "hover:text-ui-fg-base",
+                            "hover:text-ui-fг-base",
                             children && "txt-small-plus"
                           )}
                           href={`/categories/${c.handle}`}
@@ -74,18 +72,17 @@ export default async function Footer() {
                         </LocalizedClientLink>
                         {children && (
                           <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
+                            {children.map((child) => (
+                              <li key={child.id}>
+                                <LocalizedClientLink
+                                  className="hover:text-ui-fg-base"
+                                  href={`/categories/${child.handle}`}
+                                  data-testid="category-link"
+                                >
+                                  {child.name}
+                                </LocalizedClientLink>
+                              </li>
+                            ))}
                           </ul>
                         )}
                       </li>
@@ -94,12 +91,37 @@ export default async function Footer() {
                 </ul>
               </div>
             )}
+
+            {/* Контакты */}
+            <div className="flex flex-col gap-y-2">
+              <span className="txt-small-plus txt-ui-fг-base">Контакты</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fг-subtle txt-small">
+                <li> Россия, Республика Татарстан</li>
+                <li> г. Казань, ул. Сибгата Хакима, д. 5А</li>
+                <li>
+                  <a href="tel:+7 (917) 869-64-82" title="Свяжитесь с нами">
+                    📞 +7 (917) 869-64-82
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:hrr@keravt.ru"
+                    title="Свяжитесь с нами"
+                    target="_blank"
+                  >
+                    📧 hrr@keravt.ru
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Коллекции */}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">Коллекции</span>
+                <span className="txt-small-plus txt-ui-fг-base">Коллекции</span>
                 <ul
                   className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
+                    "grid grid-cols-1 gap-2 text-ui-fг-subtle txt-small",
                     {
                       "grid-cols-2": (collections?.length || 0) > 3,
                     }
@@ -108,7 +130,7 @@ export default async function Footer() {
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
+                        className="hover:text-ui-fг-base"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -118,13 +140,15 @@ export default async function Footer() {
                 </ul>
               </div>
             )}
+
+            {/* О нас */}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">О нас</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+              <span className="txt-small-plus txt-ui-fг-base">О компании</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fг-subtle txt-small">
                 <li>
                   <LocalizedClientLink
                     href={`/`}
-                    className={clx("hover:text-ui-fg-base")}
+                    className={clx("hover:text-ui-fг-base")}
                   >
                     О компании
                   </LocalizedClientLink>
@@ -132,19 +156,19 @@ export default async function Footer() {
                 <li>
                   <LocalizedClientLink
                     href={`/`}
-                    className={clx("hover:text-ui-fg-base")}
+                    className={clx("hover:text-ui-fг-base")}
                   >
-                    Политика конфиденциальности
+                    Политика конфиденчности
                   </LocalizedClientLink>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+
+        <div className="flex w-full mb-16 justify-between text-ui-fг-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} ARS Electronic. Россия, Республика
-            Татарстан, г. Казань, Сибгата Хакима 5А . +79178696482.
+            © {new Date().getFullYear()} ARS Electronic.
           </Text>
           <MedusaCTA />
         </div>
