@@ -26,6 +26,10 @@
     @apply left-0;
   }
 
+  th, td {
+    @apply px-2 text-left
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

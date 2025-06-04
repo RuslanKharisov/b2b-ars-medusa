@@ -3,6 +3,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { Table, Text } from "@medusajs/ui"
 import Markdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 import Accordion from "./accordion"
 
 type ProductTabsProps = {
@@ -44,6 +45,7 @@ const ProductSpecsTab = ({ product }: ProductTabsProps) => {
   return (
     <div className="text-small-regular py-8 xl:w-2/3">
       <Markdown
+        remarkPlugins={[remarkGfm]}
         components={{
           p: ({ children }) => (
             <Text className="text-neutral-950 mb-2">{children}</Text>

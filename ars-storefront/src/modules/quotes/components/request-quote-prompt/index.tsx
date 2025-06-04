@@ -49,7 +49,7 @@ export const RequestQuotePrompt = ({
             </li>
           </ol>
 
-          <p>Мы свяжемся с вами по электронной почте как можно скорее.</p>
+          <p>Мы свяжемся с вами в ближайшее время.</p>
         </div>
       </Dialog.Content>
     </Dialog.Portal>
