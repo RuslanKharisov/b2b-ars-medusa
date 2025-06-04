@@ -34,7 +34,7 @@ const OrderSummary = ({ order }: OrderSummaryProps) => {
             </div>
           )}
           <div className="flex items-center justify-between">
-            <span>Shipping</span>
+            <span>Доставка</span>
             <span>{getAmount(order.shipping_total)}</span>
           </div>
           <div className="flex items-center justify-between">
@@ -44,7 +44,7 @@ const OrderSummary = ({ order }: OrderSummaryProps) => {
         </div>
         <div className="h-px w-full border-b border-gray-200 border-dashed my-4" />
         <div className="flex items-center justify-between text-base-regular text-ui-fg-base mb-2">
-          <span>Total</span>
+          <span>Сумма</span>
           <span>{getAmount(order.total)}</span>
         </div>
       </div>

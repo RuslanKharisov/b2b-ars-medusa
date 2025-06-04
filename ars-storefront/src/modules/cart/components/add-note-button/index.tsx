@@ -57,7 +57,7 @@ const AddNoteButton = ({
           onClick={() => setIsOpen(true)}
           disabled={disabled}
         >
-          Add note
+          Комментарий
         </button>
       )}
       {note?.length > 0 && (

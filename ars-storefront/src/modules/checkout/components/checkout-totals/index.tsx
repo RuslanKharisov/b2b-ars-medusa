@@ -26,7 +26,7 @@ const CheckoutTotals: React.FC<{
       <div className="flex flex-col gap-y-2 txt-medium text-ui-fg-subtle ">
         <div className="flex items-center justify-between">
           <Text className="flex gap-x-1 items-center">
-            Subtotal (excl. shipping and taxes)
+            Подытог (без учета доставки и налогов))
           </Text>
           <Text
             data-testid="cart-item-subtotal"
@@ -49,7 +49,7 @@ const CheckoutTotals: React.FC<{
           </div>
         )}
         <div className="flex items-center justify-between">
-          <Text>Shipping</Text>
+          <Text>Доставка</Text>
           <Text data-testid="cart-shipping" data-value={shipping_total || 0}>
             {convertToLocale({ amount: shipping_total ?? 0, currency_code })}
           </Text>
@@ -76,7 +76,7 @@ const CheckoutTotals: React.FC<{
       </div>
       <Divider className="my-2" />
       <div className="flex items-center justify-between text-ui-fg-base mb-2 txt-medium ">
-        <Text className="font-medium">Total</Text>
+        <Text className="font-medium">Сумма</Text>
         <Text
           className="txt-xlarge-plus"
           data-testid="cart-total"

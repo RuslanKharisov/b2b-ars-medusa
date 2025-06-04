@@ -71,8 +71,7 @@ const PromotionCode: React.FC<PromotionCodeProps> = ({ cart }) => {
               className="flex gap-x-1 my-2 items-center txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="add-discount-button"
             >
-              Enter Promotion Code{" "}
-              {isOpen ? <ChevronUpMini /> : <ChevronDownMini />}
+              Ввести Промокод {isOpen ? <ChevronUpMini /> : <ChevronDownMini />}
             </button>
 
             {isOpen && (

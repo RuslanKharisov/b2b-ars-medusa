@@ -52,7 +52,7 @@ export async function NavigationHeader() {
               <input
                 disabled
                 type="text"
-                placeholder="Search for products"
+                placeholder="Поиск ..."
                 className="bg-gray-100 text-zinc-900 px-4 py-2 rounded-full pr-10 shadow-borders-base hidden small:inline-block hover:cursor-not-allowed"
                 title="Install a search provider to enable product search"
               />
@@ -83,9 +83,9 @@ export async function NavigationHeader() {
               <AccountButton customer={customer} />
             </Suspense>
 
-            {/* <Suspense fallback={<SkeletonCartButton />}>
+            <Suspense fallback={<SkeletonCartButton />}>
               <CartButton />
-            </Suspense> */}
+            </Suspense>
           </div>
         </div>
       </header>
