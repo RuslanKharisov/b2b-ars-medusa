@@ -11,8 +11,8 @@ import { Suspense } from "react"
 export const dynamicParams = true
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Explore all of our products.",
+  title: "Каталог продукции ARS Electronic",
+  description: "Обзор всей продукции ARS Electronic.",
 }
 
 type Params = {
