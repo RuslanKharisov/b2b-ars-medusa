@@ -82,10 +82,10 @@ const ImageGallery = ({ product }: ImageGalleryProps) => {
             <Image
               src={selectedImage.url}
               priority
-              className="absolute inset-0 rounded-rounded p-20 overflow-visible object-contain"
+              className="absolute inset-0 rounded-rounded overflow-visible object-contain"
               alt={(selectedImage.metadata?.alt as string) || ""}
               fill
-              sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
+              sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px "
             />
           )}
         </div>
@@ -113,15 +113,15 @@ const ImageGallery = ({ product }: ImageGalleryProps) => {
           {images.map((image, index) => (
             <li
               key={image.id}
-              className="flex aspect-[1/1] w-8 h-8 rounded-rounded"
+              className="flex aspect-[1/1] w-16 h-16 rounded-rounded"
               onClick={() => handleImageClick(image)}
               role="button"
             >
               <Image
                 src={image.url}
                 alt={(image.metadata?.alt as string) || ""}
-                height={32}
-                width={32}
+                height={64}
+                width={64}
                 className={clx(
                   index === selectedImageIndex ? "opacity-100" : "opacity-40",
                   "hover:opacity-100 object-contain"
