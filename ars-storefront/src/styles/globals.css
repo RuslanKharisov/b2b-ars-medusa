@@ -102,7 +102,7 @@
     @apply text-[30px] leading-[48px] font-normal;
   }
 
-  .text-2xl-semi {
+  .text-2xl-semi, h2 {
     @apply text-[30px] leading-[48px] font-semibold;
   }
 
@@ -110,7 +110,7 @@
     @apply text-[32px] leading-[44px] font-normal;
   }
 
-  .text-3xl-semi {
+  .text-3xl-semi, h1 {
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }

@@ -25,7 +25,7 @@ export async function NavigationHeader() {
           <div className="flex items-center small:space-x-4">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase h-full py-2 w-1/2 md:w-full flex justify-center items-center"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase h-full py-2 w-full flex justify-center items-center"
               data-testid="nav-store-link"
             >
               <Image
