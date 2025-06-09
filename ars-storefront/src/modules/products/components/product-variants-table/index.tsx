@@ -91,7 +91,7 @@ const ProductVariantsTable = ({
               <Table.HeaderCell className="px-4 border-x">
                 Price
               </Table.HeaderCell>
-              <Table.HeaderCell className="px-4">Quantity</Table.HeaderCell>
+              <Table.HeaderCell className="px-4">Количество</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body className="border-none">
@@ -146,9 +146,7 @@ const ProductVariantsTable = ({
           className="text-white"
           fill={totalQuantity === 0 ? "none" : "#fff"}
         />
-        {totalQuantity === 0
-          ? "Choose product variant(s) above"
-          : "Add to cart"}
+        {totalQuantity === 0 ? "Выбрать вариант(ы) выше" : "Добавить в корзину"}
       </Button>
     </div>
   )

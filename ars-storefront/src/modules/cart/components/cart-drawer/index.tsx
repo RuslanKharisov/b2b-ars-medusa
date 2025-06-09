@@ -191,7 +191,7 @@ const CartDrawer = ({
                         className="w-full"
                         size="large"
                       >
-                        View Cart
+                        Обзор корзины
                       </Button>
                     </LocalizedClientLink>
                     <LocalizedClientLink href={checkoutPath}>
@@ -205,7 +205,7 @@ const CartDrawer = ({
                           ? spendLimitExceeded
                             ? "Spending Limit Exceeded"
                             : "Secure Checkout"
-                          : "Log in to checkout"}
+                          : "Войти"}
                       </Button>
                     </LocalizedClientLink>
                     {spendLimitExceeded && (

@@ -22,7 +22,7 @@ const ProductFacts = ({ product }: { product: HttpTypes.StoreProduct }) => {
       ) : (
         <span className="flex items-center gap-x-2 text-neutral-600 text-sm ">
           <ExclamationCircleSolid className="text-orange-500" />
-          Limited quantity available ({inventoryQuantity} in stock)
+          Доступный остаток на складе ({inventoryQuantity})
         </span>
       )}
       <span className="flex items-center gap-x-2 text-neutral-600 text-sm">

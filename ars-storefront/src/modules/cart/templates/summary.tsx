@@ -64,7 +64,7 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
             ? spendLimitExceeded
               ? "Spending Limit Exceeded"
               : "Checkout"
-            : "Log in to Checkout"}
+            : "Войти"}
         </Button>
       </LocalizedClientLink>
       {!!customer && (
@@ -74,7 +74,7 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
             variant="secondary"
             disabled={isPendingApproval}
           >
-            Request Quote
+            Запрос КП
           </Button>
         </RequestQuoteConfirmation>
       )}
@@ -85,7 +85,7 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
             variant="secondary"
             disabled={isPendingApproval}
           >
-            Request Quote
+            Запрос КП
           </Button>
         </RequestQuotePrompt>
       )}
@@ -96,7 +96,7 @@ const Summary = ({ customer, spendLimitExceeded }: SummaryProps) => {
         variant="secondary"
         disabled={isPendingApproval}
       >
-        Empty Cart
+        Очистить корзину
       </Button>
     </Container>
   )

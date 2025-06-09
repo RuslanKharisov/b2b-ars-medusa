@@ -13,11 +13,11 @@ type ProductTabsProps = {
 const ProductTabs = ({ product }: ProductTabsProps) => {
   const tabs = [
     {
-      label: "Description",
+      label: "Описание",
       component: <ProductSpecsTab product={product} />,
     },
     {
-      label: "Specifications",
+      label: "Характеристики",
       component: <ProductSpecificationsTab product={product} />,
     },
   ]
