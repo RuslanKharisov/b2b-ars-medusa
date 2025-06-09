@@ -113,4 +113,8 @@
   .text-3xl-semi, h1 {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+
+  .bg-gradient-slate {
+    @apply bg-gradient-to-r from-slate-100 to-slate-300
+  }
 }

@@ -7,7 +7,7 @@ import Image from "next/image"
 
 const Hero = () => {
   return (
-    <div className="h-[65vh] w-full border-b border-ui-border-base bg-ui-bg-subtle">
+    <div className="md:h-[65vh] w-full border-b border-ui-border-base bg-gradient-slate">
       <div className="content-container h-full px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 flex-col flex lg:flex-row overflow-hidden">
         <div className="mr-auto place-self-center">
           <h1 className="max-w-2xl mb-4">Компьютер на модуле (SoM)</h1>

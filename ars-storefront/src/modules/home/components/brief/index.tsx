@@ -23,14 +23,14 @@ const Brief = () => {
   return (
     <section className="mb-10">
       <div className="content-container mx-auto px-4 py-10">
-        <h2 className="text-center mb-10">Подобрать SoM модуль</h2>
+        <h2 className="text-center md:mb-10">Подобрать SoM модуль</h2>
         <div className="flex flex-col lg:flex-row w-full justify-center items-center gap-6">
           <div className="">
             <Image
               src="/images/home/hero/Q7-Skif-hero.webp"
               alt="Toradex Module"
-              width={300}
-              height={300}
+              width={350}
+              height={350}
               className="w-full h-auto"
             />
           </div>
