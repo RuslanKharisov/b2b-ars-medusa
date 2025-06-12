@@ -69,7 +69,8 @@ export default async function ProductPreview({
               {inventoryQuantity} left
             </Text>
           </div>
-          <PreviewAddToCart product={product} region={region} />
+          {/* Кнопка добавить в корзину */}
+          {/* <PreviewAddToCart product={product} region={region} /> */}
         </div>
       </div>
     </LocalizedClientLink>

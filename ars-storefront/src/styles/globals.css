@@ -115,6 +115,21 @@
   }
 
   .bg-gradient-slate {
-    @apply bg-gradient-to-r from-slate-100 to-slate-300
+    @apply bg-gradient-to-r from-neutral-100 to-neutral-300
   }
+
+  .phone-container {
+    @apply h-9
+  }
+
+  .phone-input {
+    @apply block !w-full !h-full px-4 mt-0 !bg-ui-bg-field rounded-md appearance-none focus:outline-none focus:ring-0 focus:shadow-borders-interactive-with-active  hover:bg-ui-bg-field-hover
+  }
+  .phone-button {
+    @apply block !h-full !bg-ui-bg-field rounded-md 
+  }
+  .dropdown-container{
+    @apply hidden
+  }
+  
 }

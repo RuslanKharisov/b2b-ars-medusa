@@ -30,16 +30,7 @@ export const RequestQuotePrompt = ({
                   className="text-blue-500 cursor-pointer"
                   href="/account"
                 >
-                  Войти
-                </LocalizedClientLink>
-              </Dialog.Close>
-              {" или "}
-              <Dialog.Close>
-                <LocalizedClientLink
-                  className="text-blue-500 cursor-pointer"
-                  href="/account"
-                >
-                  создать аккаунт
+                  Войти или создать аккаунт
                 </LocalizedClientLink>
               </Dialog.Close>
             </li>

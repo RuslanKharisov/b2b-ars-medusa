@@ -6,6 +6,8 @@ import Button from "@/modules/common/components/button"
 import ShoppingBag from "@/modules/common/icons/shopping-bag"
 import { useState } from "react"
 import BulkTableQuantity from "../bulk-table-quantity"
+import RequestQuoteForm from "@/modules/quotes/components/request-quote-form"
+import FilePlus from "@/modules/common/icons/file-plus"
 
 const ProductVariantsTable = ({
   product,
@@ -134,7 +136,13 @@ const ProductVariantsTable = ({
           </Table.Body>
         </Table>
       </div>
-      <Button
+      <RequestQuoteForm>
+        <Button className="w-full h-10">
+          <FilePlus size={24} />
+          <span className="small:inline-block">Запросить КП</span>
+        </Button>
+      </RequestQuoteForm>
+      {/* <Button
         onClick={handleAddToCart}
         variant="primary"
         className="w-full h-10"
@@ -147,7 +155,7 @@ const ProductVariantsTable = ({
           fill={totalQuantity === 0 ? "none" : "#fff"}
         />
         {totalQuantity === 0 ? "Выбрать вариант(ы) выше" : "Добавить в корзину"}
-      </Button>
+      </Button> */}
     </div>
   )
 }

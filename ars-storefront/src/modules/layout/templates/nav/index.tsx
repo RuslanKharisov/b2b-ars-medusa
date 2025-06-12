@@ -13,6 +13,8 @@ import SkeletonCartButton from "@/modules/skeletons/components/skeleton-cart-but
 import SkeletonMegaMenu from "@/modules/skeletons/components/skeleton-mega-menu"
 import { Suspense } from "react"
 import Image from "next/image"
+import RequestQuoteForm from "@/modules/quotes/components/request-quote-form"
+import Button from "@/modules/common/components/button"
 
 export async function NavigationHeader() {
   const customer = await retrieveCustomer().catch(() => null)
@@ -60,7 +62,14 @@ export async function NavigationHeader() {
 
             <div className="h-4 w-px bg-neutral-300" />
 
-            {customer && cart?.items && cart.items.length > 0 ? (
+            <RequestQuoteForm>
+              <Button className="px-5 min-w-40">
+                <FilePlus size={24} />
+                <span className="small:inline-block">Запросить КП</span>
+              </Button>
+            </RequestQuoteForm>
+
+            {/* {customer && cart?.items && cart.items.length > 0 ? (
               <RequestQuoteConfirmation>
                 <button
                   className="flex gap-1.5 items-center rounded-2xl bg-none shadow-none border-none hover:bg-neutral-100 px-2 py-1"
@@ -68,7 +77,7 @@ export async function NavigationHeader() {
                 >
                   <FilePlus />
                   <span className="hidden small:inline-block">
-                    Запросить КП
+                    Запросить КП1
                   </span>
                 </button>
               </RequestQuoteConfirmation>
@@ -77,19 +86,19 @@ export async function NavigationHeader() {
                 <button className="flex gap-1.5 items-center rounded-2xl bg-none shadow-none border-none hover:bg-neutral-100 px-2 py-1">
                   <FilePlus />
                   <span className="hidden small:inline-block">
-                    Запросить КП
+                    Запросить КП2
                   </span>
                 </button>
               </RequestQuotePrompt>
-            )}
+            )} */}
 
-            <Suspense fallback={<SkeletonAccountButton />}>
+            {/* <Suspense fallback={<SkeletonAccountButton />}>
               <AccountButton customer={customer} />
-            </Suspense>
+            </Suspense> */}
 
-            <Suspense fallback={<SkeletonCartButton />}>
+            {/* <Suspense fallback={<SkeletonCartButton />}>
               <CartButton />
-            </Suspense>
+            </Suspense> */}
           </div>
         </div>
       </header>
