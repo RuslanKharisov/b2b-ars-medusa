@@ -9,7 +9,7 @@ type ProductInfoProps = {
 const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
     <div id="product-info">
-      <div className="flex flex-col gap-y-4 w-full">
+      <div className="flex flex-col md:gap-y-4 w-full">
         <Heading
           level="h1"
           className="text-[2.5rem] leading-10 text-ui-fg-base"

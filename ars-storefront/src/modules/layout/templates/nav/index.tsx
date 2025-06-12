@@ -63,7 +63,7 @@ export async function NavigationHeader() {
             <div className="h-4 w-px bg-neutral-300" />
 
             <RequestQuoteForm>
-              <Button className="px-5 min-w-40">
+              <Button className="px-5 min-w-44">
                 <FilePlus size={24} />
                 <span className="small:inline-block">Запросить КП</span>
               </Button>
