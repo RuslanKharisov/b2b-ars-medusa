@@ -72,10 +72,10 @@ const RequestQuoteForm = ({ children }: { children: React.ReactNode }) => {
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-black/50 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <Dialog.Overlay className="bg-black/60 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Dialog.Content
           className="fixed inset-x-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-slate py-10 px-6 md:px-10 
-                    shadow-lg rounded-xl w-11/12 max-h-[80vh] overflow-y-auto mt-10"
+                    shadow-lg rounded-xl w-11/12 md:w-1/2 max-h-[80vh] overflow-y-auto mt-8"
         >
           <Dialog.Title className="flex justify-between items-center font-sans font-medium h2-core text-ui-fg-base mb-4">
             Получить коммерческое предложение
