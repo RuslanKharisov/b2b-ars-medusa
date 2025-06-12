@@ -21,7 +21,7 @@ const features = [
 
 const Brief = () => {
   return (
-    <section className="mb-10">
+    <section className="bg-neutral-50">
       <div className="content-container mx-auto px-4 py-10">
         <h2 className="text-center md:mb-10">Подобрать SoM модуль</h2>
         <div className="flex flex-col lg:flex-row w-full justify-center items-center gap-6">
