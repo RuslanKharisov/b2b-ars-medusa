@@ -1,6 +1,6 @@
 {
-  "name": "ARS Electronic",
-  "short_name": "ARS Electronic",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
