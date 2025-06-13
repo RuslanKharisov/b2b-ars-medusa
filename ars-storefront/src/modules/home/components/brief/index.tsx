@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const features = [
   {
-    title: "Готовое к использованию решение",
+    title: "Готовое к использованию решение для интеграции в ваше оборудование",
   },
   {
     title: "Ускорение выхода на рынок и сокращение времени разработки",
@@ -15,7 +15,7 @@ const features = [
   },
   {
     title:
-      "Работает в экстремальных условиях, при высокой вибрации и высокой влажности",
+      "Работа в экстремальных условиях: высокая вибрация, влажность, температурный диапазон -40°C до +85°C",
   },
 ]
 
@@ -23,7 +23,9 @@ const Brief = () => {
   return (
     <section className="bg-neutral-50">
       <div className="content-container mx-auto px-4 py-10">
-        <h2 className="text-center md:mb-10">Подобрать SoM модуль</h2>
+        <h2 className="text-center md:mb-10">
+          Преимущества SoM-модулей от ARS Electronic
+        </h2>
         <div className="flex flex-col lg:flex-row w-full justify-center items-center gap-6">
           <div className="">
             <Image
@@ -55,7 +57,7 @@ const Brief = () => {
               size="xlarge"
               className="w-full md:w-fit"
             >
-              Выбрать модуль в каталоге
+              Выбрать SoM-модуль в каталоге
             </Button>
           </Link>
           <Button

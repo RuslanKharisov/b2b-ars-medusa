@@ -102,7 +102,7 @@
     @apply text-[30px] leading-[48px] font-normal;
   }
 
-  .text-2xl-semi, h2 {
+  .text-2xl-semi, h2, h3 {
     @apply text-[30px] leading-[48px] font-semibold;
   }
 
