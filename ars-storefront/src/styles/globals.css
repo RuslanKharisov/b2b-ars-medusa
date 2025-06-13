@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
+
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -115,7 +118,10 @@
   }
 
   .bg-gradient-slate {
-    @apply bg-gradient-to-r from-neutral-100 to-neutral-400
+    @apply bg-gradient-to-r from-gulf-stream-50 to-gulf-stream-200
+  }
+  .bg-gradient-metallic-bronze {
+    @apply bg-gradient-to-r from-metallic-bronze-50 to-metallic-bronze-100
   }
 
   .phone-container {

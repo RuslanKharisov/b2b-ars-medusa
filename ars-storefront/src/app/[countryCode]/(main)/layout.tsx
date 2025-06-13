@@ -27,7 +27,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
   return (
     <>
       <NavigationHeader />
-      <div className="flex items-center text-neutral-50 justify-center small:p-4 p-2 text-center bg-neutral-900 small:gap-2 gap-1 text-sm">
+      <div className="flex items-center text-neutral-50 justify-center small:p-4 p-2 text-center bg-stone-800 small:gap-2 gap-1 text-sm">
         <div className="flex flex-col small:flex-row small:gap-2 gap-1 items-center">
           <span className="flex items-center gap-1">
             <ExclamationCircleSolid className="inline" color="#A1A1AA" />
@@ -36,10 +36,10 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
 
           <Link
             href="/store"
-            className="group hover:text-ui-fg-interactive-hover text-ui-fg-interactive self-end small:self-auto"
+            className="group hover:text-gulf-stream-300 text-metallic-bronze-200 self-end small:self-auto duration-300 "
           >
             Выбрать модуль в каталоге
-            <ArrowUpRightMini className="group-hover:text-ui-fg-interactive-hover inline text-ui-fg-interactive" />
+            <ArrowUpRightMini className="group-hover:text-gulf-stream-100 inline text-metallic-bronze-100" />
           </Link>
         </div>
       </div>

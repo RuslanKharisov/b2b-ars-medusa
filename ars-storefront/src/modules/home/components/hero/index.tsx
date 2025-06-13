@@ -1,8 +1,8 @@
 "use client"
 
-import Button from "@/modules/common/components/button"
 import Image from "next/image"
 import RequestQuoteForm from "@/modules/quotes/components/request-quote-form"
+import Button from "@/modules/common/components/button"
 
 const Hero = () => {
   return (
@@ -23,7 +23,7 @@ const Hero = () => {
           </p>
 
           <RequestQuoteForm>
-            <Button variant="secondary" size="xlarge" className="">
+            <Button variant="secondary" size="xlarge">
               Подобрать SoM модуль
             </Button>
           </RequestQuoteForm>

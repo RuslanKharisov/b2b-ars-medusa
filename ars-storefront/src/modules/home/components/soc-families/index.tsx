@@ -20,7 +20,7 @@ const SocFamilyList = [
 
 const SocFamilies = () => {
   return (
-    <section className="bg-gradient-slate">
+    <section className="bg-gulf-stream-50">
       <div className="content-container py-8 sm:py-16 lg:px-6">
         <div className="mb-8 max-w-screen-md lg:mb-16 mx-auto">
           <h2 className="mb-4 text-center">Выбрать семейство SoM.</h2>

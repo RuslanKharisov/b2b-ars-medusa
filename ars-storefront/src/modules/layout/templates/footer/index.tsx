@@ -17,7 +17,7 @@ export default async function Footer() {
   })
 
   return (
-    <footer className="border-t border-ui-border-base w-full ">
+    <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
           <div className="w-full sm:w-auto">
@@ -94,8 +94,8 @@ export default async function Footer() {
 
             {/* Контакты */}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fг-base">Контакты</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fг-subtle txt-small">
+              <span className="txt-small-plus txt-ui-fg-base">Контакты</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li> Россия, Республика Татарстан</li>
                 <li> г. Казань, ул. Сибгата Хакима, д. 5А</li>
                 <li>
@@ -118,10 +118,10 @@ export default async function Footer() {
             {/* Коллекции */}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fг-base">Коллекции</span>
+                <span className="txt-small-plus txt-ui-fg-base">Коллекции</span>
                 <ul
                   className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fг-subtle txt-small",
+                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
                     {
                       "grid-cols-2": (collections?.length || 0) > 3,
                     }
@@ -143,8 +143,8 @@ export default async function Footer() {
 
             {/* О нас */}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fг-base">О компании</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fг-subtle txt-small">
+              <span className="txt-small-plus txt-ui-fg-base">О компании</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
                   <LocalizedClientLink
                     href={`/`}
@@ -166,7 +166,7 @@ export default async function Footer() {
           </div>
         </div>
 
-        <div className="flex w-full mb-16 justify-between text-ui-fг-muted">
+        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
           <Text className="txt-compact-small">
             © {new Date().getFullYear()} ARS Electronic.
           </Text>
