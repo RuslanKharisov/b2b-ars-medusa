@@ -6996,6 +6996,7 @@ __metadata:
     react-intersection-observer: "npm:^9.3.4"
     react-markdown: "npm:^9.0.1"
     react-phone-input-2: "npm:^2.15.1"
+    react-yandex-metrika: "npm:^2.6.0"
     remark-gfm: "npm:^4.0.1"
     server-only: "npm:^0.0.1"
     tailwindcss: "npm:^3.4.1"
@@ -8534,6 +8535,16 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10/62498094ff3877a37f351b29e6cad9e38b2eb1ac3c0cb27ebf80aee96554f80b35e17bdb552bcd7ac8b7cb9904fea93ea5668f2057c73d38f90b5d46bb9b27ab
+  languageName: node
+  linkType: hard
+
+"react-yandex-metrika@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "react-yandex-metrika@npm:2.6.0"
+  peerDependencies:
+    prop-types: "*"
+    react: "*"
+  checksum: 10/434cd7983b198fdd891a0ed476244e1172331e81150103a60b07a7a53d70b1e7333cc1cb90a72f762bb12fa78da9664c59a546d4d7dbc9927be2ae3c51a93d7c
   languageName: node
   linkType: hard
 
