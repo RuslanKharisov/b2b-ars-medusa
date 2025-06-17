@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://arselectronic.ru/sitemap.xml
