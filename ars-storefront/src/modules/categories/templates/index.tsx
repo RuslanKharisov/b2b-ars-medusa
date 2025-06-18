@@ -72,7 +72,7 @@ export default function CategoryTemplate({
                 }
               >
                 <div className="flex flex-col gap-8">
-                  <Container className="flex flex-col gap-2 justify-center text-center items-center text-sm text-neutral-500">
+                  <Container className="flex flex-col gap-2 justify-center text-center items-center text-sm text-neutral-500 py-11">
                     <Heading
                       level="h1"
                       className="text-3xl md:text-3xl leading-10 text-ui-fg-base "
