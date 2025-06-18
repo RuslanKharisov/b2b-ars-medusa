@@ -7,7 +7,7 @@ import { SortOptions } from "@/modules/store/components/refinement-list/sort-pro
 import PaginatedProducts from "@/modules/store/templates/paginated-products"
 import { ArrowUturnLeft } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
-import { Container, Text } from "@medusajs/ui"
+import { Container, Heading, Text } from "@medusajs/ui"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 
@@ -71,12 +71,30 @@ export default function CategoryTemplate({
                   />
                 }
               >
-                <PaginatedProducts
-                  sortBy={sort}
-                  page={pageNumber}
-                  categoryId={currentCategory.id}
-                  countryCode={countryCode}
-                />
+                <div className="flex flex-col gap-8">
+                  <Container className="flex flex-col gap-2 justify-center text-center items-center text-sm text-neutral-500">
+                    <Heading
+                      level="h1"
+                      className="text-3xl md:text-3xl leading-10 text-ui-fg-base "
+                      data-testid="product-title"
+                    >
+                      {currentCategory.name}
+                    </Heading>
+
+                    <Text
+                      className="text-sm md:text-xl text-ui-fg-subtle whitespace-pre-line"
+                      data-testid="product-description"
+                    >
+                      {currentCategory.description}
+                    </Text>
+                  </Container>
+                  <PaginatedProducts
+                    sortBy={sort}
+                    page={pageNumber}
+                    categoryId={currentCategory.id}
+                    countryCode={countryCode}
+                  />
+                </div>
               </Suspense>
             )}
           </div>
