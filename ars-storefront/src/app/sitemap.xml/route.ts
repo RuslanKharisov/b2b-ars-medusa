@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic"
-
 import { NextResponse } from "next/server";
 import { sdk } from "@/lib/config";
 import { getAuthHeaders } from "@/lib/data/cookies";
