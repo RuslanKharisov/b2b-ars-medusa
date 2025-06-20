@@ -6,7 +6,7 @@ import { listCategories } from "@/lib/data/categories";
 import { listCollections } from "@/lib/data/collections";
 
 export async function GET() {
-  const baseUrl = "https://arselectronic.ru";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://arselectronic.ru";
   const date = new Date().toISOString();
 
   try {
