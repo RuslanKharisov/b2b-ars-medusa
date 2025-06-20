@@ -27,7 +27,21 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
                 ],
             },
             {
-                userAgent: ['YandexBot', 'Googlebot'],
+                userAgent: ['YandexBot'],
+                allow: [
+                    `/${defaultCountryCode}$`,
+                    `/${defaultCountryCode}/products/`,
+                    `/${defaultCountryCode}/collections/`
+                ],
+                disallow: [
+                    `/${defaultCountryCode}/cart`,
+                    `/${defaultCountryCode}/checkout`,
+                    `/${defaultCountryCode}/account`
+                ],
+                crawlDelay: 1,
+            },
+            {
+                userAgent: ['Googlebot'],
                 allow: [
                     `/${defaultCountryCode}$`,
                     `/${defaultCountryCode}/products/`,
