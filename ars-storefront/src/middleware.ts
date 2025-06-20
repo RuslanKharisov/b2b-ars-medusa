@@ -106,9 +106,36 @@ async function setCacheId(request: NextRequest, response: NextResponse) {
 }
 
 /**
+ * User-Agent bot check. 
+ */
+function isSearchEngineBot(userAgent: string | null) {
+  if (!userAgent) return false;
+  const bots = ['Googlebot', 'YandexBot', 'Bingbot', 'DuckDuckBot'];
+  return bots.some(bot => userAgent.includes(bot));
+}
+
+
+/**
  * Middleware to handle region selection and cache id.
  */
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const userAgent = request.headers.get('user-agent');
+
+  // Handling root URL (/)
+  if (pathname === '/') {
+    // Для поисковых ботов — отдаем контент /ru без редиректа (HTTP 200)
+    if (isSearchEngineBot(userAgent)) {
+      const rewriteUrl = new URL('/ru', request.url);
+      return NextResponse.rewrite(rewriteUrl); // Важно: rewrite, а не redirect!
+    }
+
+    // For regular users, leave the current 307 redirect
+    const countryCode = await getCountryCode(request, await getRegionMap(await setCacheId(request, NextResponse.next())));
+    const redirectUrl = `${request.nextUrl.origin}/${countryCode}`;
+    return NextResponse.redirect(redirectUrl, 307);
+  }
+
   const searchParams = request.nextUrl.searchParams
   const cartId = searchParams.get("cart_id")
   const checkoutStep = searchParams.get("step")
