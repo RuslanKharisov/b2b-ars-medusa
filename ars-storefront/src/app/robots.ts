@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { listRegions } from "@/lib/data/regions";
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arselectronic.ru";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://arselectronic.ru";
     const regions = await listRegions();
     const defaultCountryCode = regions?.[0]?.countries?.[0]?.iso_2 || "ru";
 
