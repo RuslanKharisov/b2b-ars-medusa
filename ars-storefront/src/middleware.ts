@@ -110,7 +110,26 @@ async function setCacheId(request: NextRequest, response: NextResponse) {
  */
 function isSearchEngineBot(userAgent: string | null) {
   if (!userAgent) return false;
-  const bots = ['Googlebot', 'YandexBot', 'Bingbot', 'DuckDuckBot'];
+  const bots = [
+    // Основные боты
+    'Googlebot',
+    'Bingbot',
+    'DuckDuckBot',
+    // Все возможные User-Agent Яндекса
+    'YandexBot',
+    'YandexAccessibilityBot',
+    'YandexMobileBot',
+    'YandexDirect',
+    'YandexMetrika',
+    'YandexImages',
+    'YandexVideo',
+    'YandexMedia',
+    'YandexBlogs',
+    'YandexFavicons',
+    'YandexWebmaster',
+    'YandexPagechecker',
+    'YandexCalendar'
+  ];
   return bots.some(bot => userAgent.includes(bot));
 }
 
@@ -124,10 +143,13 @@ export async function middleware(request: NextRequest) {
 
   // Handling root URL (/)
   if (pathname === '/') {
-    // Для поисковых ботов — отдаем контент /ru без редиректа (HTTP 200)
+    // For search bots - we give content /ru without redirect (HTTP 200)
     if (isSearchEngineBot(userAgent)) {
       const rewriteUrl = new URL('/ru', request.url);
-      return NextResponse.rewrite(rewriteUrl); // Важно: rewrite, а не redirect!
+      const response = NextResponse.rewrite(rewriteUrl);
+      // Disable caching for bots
+      response.headers.set('Cache-Control', 'no-store, max-age=0');
+      return response;
     }
 
     // For regular users, leave the current 307 redirect
