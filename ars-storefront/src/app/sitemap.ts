@@ -11,8 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://arselectronic.ru'
     const date = new Date().toISOString()
 
-    const regions = await listRegions()
-    const defaultCountryCode = regions?.[0]?.countries?.[0]?.iso_2 || 'ru'
+    const defaultCountryCode = 'ru'
 
     const [{ products }, { collections }, categories] = await Promise.all([
         sdk.store.product.list(
