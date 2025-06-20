@@ -12,9 +12,9 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
                 userAgent: '*',
                 allow: [
                     `/${defaultCountryCode}$`,
-                    `/${defaultCountryCode}/products/.+$`,
-                    `/${defaultCountryCode}/collections/.+$`,
-                    `/${defaultCountryCode}/categories/.+$`,
+                    `/${defaultCountryCode}/products/`,
+                    `/${defaultCountryCode}/collections/`,
+                    `/${defaultCountryCode}/categories/`,
                     `/${defaultCountryCode}/store$`
                 ],
                 disallow: [
@@ -30,8 +30,8 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
                 userAgent: ['YandexBot', 'Googlebot'],
                 allow: [
                     `/${defaultCountryCode}$`,
-                    `/${defaultCountryCode}/products/.+$`,
-                    `/${defaultCountryCode}/collections/.+$`
+                    `/${defaultCountryCode}/products/`,
+                    `/${defaultCountryCode}/collections/`
                 ],
                 disallow: [
                     `/${defaultCountryCode}/cart`,

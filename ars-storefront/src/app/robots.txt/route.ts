@@ -6,12 +6,16 @@ export async function GET() {
     const regions = await listRegions()
     const defaultCountryCode = regions?.[0]?.countries?.[0]?.iso_2 || "ru"
 
+    const isProd = process.env.NODE_ENV === "production";
+    const hostLine = isProd ? `Host: ${baseUrl}` : "";
+    const sitemapLine = isProd ? `Sitemap: ${baseUrl}/sitemap.xml` : ""
+
     const robotsText = `
 User-Agent: *
 Allow: /${defaultCountryCode}$
-Allow: /${defaultCountryCode}/products/.+$
-Allow: /${defaultCountryCode}/collections/.+$
-Allow: /${defaultCountryCode}/categories/.+$
+Allow: /${defaultCountryCode}/products/
+Allow: /${defaultCountryCode}/collections/
+Allow: /${defaultCountryCode}/categories/
 Allow: /${defaultCountryCode}/store$
 Disallow: /${defaultCountryCode}/account
 Disallow: /${defaultCountryCode}/checkout
@@ -21,17 +25,25 @@ Disallow: /admin/
 Disallow: /private/
 
 User-Agent: YandexBot
-User-Agent: Googlebot
 Allow: /${defaultCountryCode}$
-Allow: /${defaultCountryCode}/products/.+$
-Allow: /${defaultCountryCode}/collections/.+$
+Allow: /${defaultCountryCode}/products/
+Allow: /${defaultCountryCode}/collections/
 Disallow: /${defaultCountryCode}/cart
 Disallow: /${defaultCountryCode}/checkout
 Disallow: /${defaultCountryCode}/account
 Crawl-delay: 1
 
-Host: ${baseUrl}
-Sitemap: ${baseUrl}/sitemap.xml
+User-Agent: Googlebot
+Allow: /${defaultCountryCode}$
+Allow: /${defaultCountryCode}/products/
+Allow: /${defaultCountryCode}/collections/
+Disallow: /${defaultCountryCode}/cart
+Disallow: /${defaultCountryCode}/checkout
+Disallow: /${defaultCountryCode}/account
+Crawl-delay: 1
+
+Host: ${hostLine}
+Sitemap: ${sitemapLine}
 `
 
     return new NextResponse(robotsText, {
